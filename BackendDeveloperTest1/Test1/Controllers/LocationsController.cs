@@ -34,10 +34,8 @@ SELECT
     Address,
     City,
     Locale,
-    PostalCode,
-FROM location
-WHERE AccountStatus < CANCELLED;
-;";
+    PostalCode
+FROM location;";
 
             var builder = new SqlBuilder();
 
