@@ -33,6 +33,7 @@ SELECT
     member.LastName,
     member.Address,
     member.City,
+    member.""Primary"",
     member.Locale,
     member.PostalCode,
     member.JoinedDateUtc,
@@ -110,7 +111,6 @@ WHERE Primary = 1
                 model.City,
                 model.Locale,
                 model.PostalCode, 
-                model.Primary
             });
 
             var count = await dbContext.Session.ExecuteAsync(template.RawSql, template.Parameters, dbContext.Transaction)
@@ -130,7 +130,7 @@ WHERE Primary = 1
         {
             await using var dbContext = await _sessionFactory.CreateContextAsync(cancellationToken)
                 .ConfigureAwait(false);
-
+    // TODO: ask about this 
             const string sql = @"
 DELETE FROM member WHERE Guid = @Guid;
 DELETE FROM account WHERE LocationUid = @Guid;
